@@ -1,16 +1,34 @@
 <template>
   <div class="welcome container">
-      <SignUp></SignUp>
+    <div v-if="showLoginForm">
       <Login></Login>
+      <p>not a member? <span @click="showLoginForm= !showLoginForm">create account?</span></p>
+      
+    </div>
+    <div v-else>
+      <SignUp></SignUp>
+      <p>already member? <span @click="showLoginForm= !showLoginForm">login account?</span></p>
+    </div>
+      
+      
   </div>
 </template>
 
 <script>
+import { ref } from '@vue/reactivity'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 export default {
   components: {
     Login, SignUp },
+    setup(){
+      let showLoginForm = ref(true);
+      let showToggle=()=>{
+        showLoginForm.value= !showLoginForm.value;
+}
+
+    return {showLoginForm, showToggle}
+    }
 
 }
 </script>
