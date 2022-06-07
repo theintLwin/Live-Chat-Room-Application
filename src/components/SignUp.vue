@@ -4,6 +4,7 @@
       <input type="text" placeholder="display name" v-model="displayName">
       <input type="email" placeholder="email" v-model="email">
       <input type="password" placeholder="password" v-model="password">
+      <div v-if="error" class="error">{{error}}</div>
       <button>Sign Up</button>
   </form>
 </template>
@@ -23,8 +24,10 @@ export default {
       let signUp = async()=>{
          // console.log(displayName.value, email.value, password.value);
         let res=await createAccount(email.value, password.value, displayName.value);
-        console.log(res.user)
-          }
+        if(res){
+          console.log(res.user);
+        }// this block is to write codes which will do after response obj is received.this means that response is only back when creating user with email pw was successful.
+           }
 
       return {displayName, email, password, signUp, error}
     }
