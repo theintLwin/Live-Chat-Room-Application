@@ -14,7 +14,7 @@ import { ref } from '@vue/reactivity';
 
 import useSignup from '../composables/useSignup'
 export default {
-    setup(){
+    setup(props, context){
       let displayName = ref("");
       let email = ref("");
       let password = ref("");
@@ -25,7 +25,7 @@ export default {
          // console.log(displayName.value, email.value, password.value);
         let res=await createAccount(email.value, password.value, displayName.value);
         if(res){
-          console.log(res.user);
+          context.emit("enterChatroom");
         }// this block is to write codes which will do after response obj is received.this means that response is only back when creating user with email pw was successful.
            }
 
