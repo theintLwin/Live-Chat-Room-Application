@@ -3,9 +3,9 @@ import {auth} from '../firebase/config'
 
 let error = ref(null);
 
-let createAccount = async(email,password,displayName)=>{
+let createAccount = async(email,password,displayName) => {
     try{
-        let res=await auth.createUserWithEmailAndPassword(email,password);
+        let res = await auth.createUserWithEmailAndPassword(email,password);
      
         if(!res){
           throw new Error("could not create new user");
